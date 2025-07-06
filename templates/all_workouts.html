@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block style %}
+ <link rel="stylesheet" href="{{ url_for('static',filename='Edit_workout.css') }}">
+{% endblock %}
+
+{%block content%}
+<center>
+    <h1>Welcom {{current_user.UserName}}</h1>
+    {% with mes = get_flashed_messages() %}
+        {% if mes %}
+            <div class="flash-message"> {{ mes[0] }} </div>
+        {% endif %} 
+    {% endwith %}
+</center>
+<center>
+    <table >
+        <thead>
+            <th>ID</th>    
+            <th>Number of Push_Ups</th>    
+            <th>Performed At</th>
+            <th>Comment</th>
+        </thead>
+        <tbody>
+            {% for task in workouts.items %}
+              <tr>
+                  <td>{{task.id}}</td>
+                  <td>{{task.pushups}}</td>
+                  <td>{{task.date_posted}}</td>
+                  <td>{{task.comment}}</td>
+                  <td><div class="edit-button"><a href="{{ url_for('main.update_workout',workout_id=task.id) }}">Edit</a></div></td>
+                  <td><div class="delete-button"><a href="{{ url_for('main.delete_workout',workout_id=task.id) }}">Delete</a></div></td>
+              </tr>
+            {% endfor %}
+        </tbody>        
+        <tfoot></tfoot>
+    </table>
+    {% for page_num in workouts.iter_pages(left_edge=1,right_edge=1,
+    left_current=0,right_current=0) %}
+        {% if page_num %} 
+        <a href="{{ url_for('main.user_workouts',page=page_num) }}">{{ page_num }}</a>
+        {%else%}
+        ...
+        {% endif %}
+    {% endfor %}    
+</center>
+{%endblock%}

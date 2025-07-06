@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{# we can extends content of base class by super(like other file) keywrod or without create any thing just #}
+{% block content  %}
+  <div class="form-container">
+    <h1>Login:</h1><br>
+    <form method="POST" action="/login">
+      <label for="name">Email:</label><br>
+      <input type="email" name="email" id="email" placeholder="Enter Your Email" required><br><br>
+
+      <label for="name">Password:</label><br>
+      <input type="password" name="password" id="password" placeholder="Enter Your Password" required><br><br>
+
+      <input type="checkbox" name="remember" id="remember">
+      <label for="remember">Remeber Me</label><br><br>
+
+      <input type="submit"> 
+      <input type="reset"> 
+    </form>   
+ </div>
+{% endblock  %}
+
+{#
+The action attribute in an HTML <form> tag specifies where (which URL or path)
+to send the form data after submission.
+#}

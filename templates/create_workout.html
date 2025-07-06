@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <h1>Add New Workout:</h1>
+    <form action="/new" method="POST">
+        <label for="pushups">Push_Ups</label><br>
+        <input type="text" name="pushups" id="pushups" placeholder="Enter Number of PushUps done"><br><br>
+    
+        <label for="comment">Comment</label><br>
+        <input type="text" name="comment" id="comment" placeholder="Add Any comment"><br><br>
+    
+        <input type="submit" value="Add New Workout">
+    </form>
+{%endblock%}

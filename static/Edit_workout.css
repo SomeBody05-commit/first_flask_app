@@ -1,0 +1,6 @@
+.flash-message{
+    background-color: #eee;
+    display: inline-block;
+    padding: 5px;
+    color: rgb(7, 233, 7);
+}

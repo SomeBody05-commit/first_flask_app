@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static',filename='Edit_workout.css') }}">
+{% endblock %}
+
+{%block content%}
+    <div>
+        <h1>Update Your Workout:</h1>
+        
+        <form method="POST" action="{{ url_for('main.update_workout',workout_id=workout.id) }}">
+
+            <label for="pushups">Number of Push-Ups:</label><br>
+            <input type="text" name="pushups" id="pushups"><br><br>
+
+            <label for="comment">Enter Comment:</label><br>
+            <input type="text" name="comment" id="comment"><br><br>
+            
+            <input type="submit" value="Update The Workout">
+        </form>
+    </div>
+{%endblock%}
+
+{#
+The action property in a <form> element in HTML specifies where (to which URL or route)
+the form data will be sent when the user submits the form.
+#}

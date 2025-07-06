@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%if filestyle%}
+     <link rel="stylesheet" href="{{ url_for('static',filename=filestyle) }}">
+    {%endif%}
+    {% block style %}{% endblock %}
+    <title>{{ pageTitle }}</title>
+    <style>
+        *{
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #fff;
+        }
+        header{
+            background-color:#eee;
+            padding: 8px 12px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        header > #center{
+            display: flex;
+            justify-content: space-between;
+        }
+        #leftSide > div,#leftSide > h1{
+            display: inline-block;
+            margin-right: 5px;
+        }
+        #leftSide > h1{
+            margin-right: 10px;
+            word-spacing: 5px;
+            text-transform: capitalize;
+        }
+        #leftSide > div{
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid black;
+            color: rgb(179, 179, 179);
+            cursor: pointer;
+        }
+        #authentification > div{
+            display: inline-block;
+            margin-left: 5px;
+            border: 1px solid rgb(71, 143, 225);
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        #authentification > div > a{
+            color: rgb(71, 143, 225);
+            text-decoration: none;
+        }
+        #authentification > div:hover{
+            background-color: rgb(71, 143, 225);
+            color: #fff;
+        }
+        #authentification > div:hover > a{
+            color: #fff;
+        }
+        #leftSide > div:hover{
+            background-color: gray;
+            color: #fff;
+        }
+        #center{
+            width: 80%;
+            margin: 0 auto;
+        }
+        section{
+            margin: 70px 10px;
+        }
+        #pushUpsimg{
+           width: 100%;
+           display: flex;
+           justify-items: center;
+           justify-content: center;
+           height: 500px;
+        }
+        #pushUpsimg img{
+            width: 100%;
+            height: 70%;
+        }
+        @media(max-width:1250px){
+            #center{
+                width: 90%;
+            }
+        }
+        @media(max-width:1150px){
+            #center{
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    {%block head%}
+    <header>
+        <div id="center">
+            <div id="leftSide">
+                <h1 id="logo"><a href="{{ url_for('main.index') }}">Push_Ups Logger</a></h1>
+                <div id="works"><a href="{{ url_for('main.user_workouts') }}">All Workouts</a></div>
+                <div id="account">Accounts</div>
+            </div>
+            <div id="authentification">
+              {% if current_user.is_authenticated %}
+                <div><a href="{{ url_for('main.new_workout') }}">Add New Workout</a></div>
+                <div><a href="{{ url_for('auth.logout') }}">Logout</a></div>
+              {% else %}
+                <div id="sign"><a href="{{ url_for('auth.signup') }}">Sign in</a></div>
+                <div id="login"><a href="{{ url_for('auth.login') }}">login</a></div>
+              {% endif %}
+            </div>
+      </div>
+    </header>
+    {%endblock%}
+
+    <section>
+        {%block content%}
+        <h1>Hello</h1>
+        <div id="pushUpsimg">
+            <img src="{{url_for('static',filename='image/push_upImg.png')}}">
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+             <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %} 
+        {% endwith %}
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Sequi ut deleniti dolore natus voluptates quasi quod sint,
+            necessitatibus distinctio repellat.
+        </p>
+        
+        
+        {%endblock%}
+    </section>
+</body>
+</html>

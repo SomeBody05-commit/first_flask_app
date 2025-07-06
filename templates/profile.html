@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{%block head%}
+{# we use super() for get same content of block in base.html and we can also add aditional content into super() #}
+<header>
+    <div id="center">
+        <div id="leftSide">
+            <h1 id="logo">
+                <a href="{{ url_for('main.index') }}">
+                    Push_Ups Logger
+                </a>
+            </h1>
+            <div id="works">All Workouts</div>
+            <div id="account">Account</div>
+        </div>
+        <div id="authentification">
+            <div id="sign"><a href="#">Add New Workout</a></div>
+            <div id="login"><a href="{{ url_for('auth.login') }}">Log Out</a></div>
+        </div>
+    </div>
+</header>
+{%endblock%}
+
+{%block content%}
+ <h1>Hello {{name}}!</h1>
+{%endblock%}
